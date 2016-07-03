@@ -1,3 +1,5 @@
+from __future__ import print_function, division
+
 from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Distutils import build_ext
@@ -7,11 +9,13 @@ from os import system
 
 # compile the fortran modules without linking
 fortran_mod_comp = 'gfortran slsqp.f90 -c -o slsqp.o -O3 -fPIC'
-print fortran_mod_comp
+print(fortran_mod_comp)
 system(fortran_mod_comp)
 shared_obj_comp = 'gfortran slsqp_interface.f90 -c -o slsqp_interface.o -O3 -fPIC'
-print shared_obj_comp
+print(shared_obj_comp)
 system(shared_obj_comp)
+
+print('done with setup')
 
 ext_modules = [Extension(# module name:
                          'slsqp',
